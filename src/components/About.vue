@@ -1,44 +1,32 @@
 <template>
-  <div class="about">
-    <el-input placeholder="请输入姓名" prefix-icon="el-icon-search" v-model="input2"></el-input>
-    <div class="content">
-      <el-container>
-  <el-aside>
-    <Aside></Aside>
-  </el-aside>
-  <el-container>
-    <el-header><img src="../../public/img/top-main.png"/></el-header>
-    <el-main><Main></Main></el-main>
-  </el-container>
-</el-container>
-    </div>
-  </div>
+<div>
+ <div v-if="kk===1">
+     <cai></cai>
+ </div>
+ <div v-else-if="kk===2">2</div>
+ </div>
 </template>
 <script>
-import Aside from '../components/Aside.vue'
-import Main from '../components/Main.vue'
-export default {
-components:{
-  Aside,
-  Main
-}
+import Msg from '../../public/Msg.js'
+import cai from './Cai'
+export default{
+    components:{
+    cai
+    },
+   data () {
+       return{
+           kk:0
+       }
+   }, 
+   mounted(){
+       var _this=this;
+       Msg.$on('val',e=>{
+           console.log(678)
+        _this.kk=e
+       })
+   }
 }
 </script>
-<style scope>
-*{
-  margin: 0;
-  padding: 0;
-}
-.el-aside{
-  width:100px;
-  background:#f5f5f5;
-}
-.el-header img{
-  width: 1000px;
-  margin: 0 auto;
-}
-.el-main{
-  width:1000px;
-}
+<style lang="stylus" >
 
 </style>
